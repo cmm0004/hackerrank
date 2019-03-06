@@ -1,0 +1,52 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
+
+class Solution {
+
+    // Complete the plusMinus function below.
+    static void plusMinus(int[] arr) {
+      decimal negativeCount = 0m;
+      decimal positiveCount = 0m;
+      decimal zeroCount = 0m;
+      decimal total = arr.Length;
+      if (total == 0){
+        return;
+      }
+
+      for (var i = 0; i < arr.Length; i++)
+      {
+       if (arr[i] > 0)
+       {
+         positiveCount++;
+       } else if (arr[i]< 0)
+       {
+         negativeCount++;
+       } else
+       {
+         zeroCount++;
+       }
+      }
+      Console.WriteLine(decimal.Round(positiveCount/total, 4, MidpointRounding.AwayFromZero));
+      Console.WriteLine(decimal.Round(negativeCount/total, 4, MidpointRounding.AwayFromZero));
+      Console.WriteLine(decimal.Round(zeroCount/total, 4, MidpointRounding.AwayFromZero));
+    }
+
+    static void Main(string[] args) {
+        int n = Convert.ToInt32(Console.ReadLine());
+
+        int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
+        ;
+        plusMinus(arr);
+    }
+}
